@@ -6,7 +6,8 @@ namespace MyLeasing.Web.Data.Entities
     {
         public int Id { get; set; }
         [Required]
-        [MaxLength(30)]
+        [MaxLength(30, ErrorMessage = "El campo {0} no puede tener mas de {1} caracteres")]
+
         public string Document { get; set; }
         [Required]
         [MaxLength(50)]
@@ -24,6 +25,7 @@ namespace MyLeasing.Web.Data.Entities
         public string CellPhone { get; set; }
         public string Address { get; set; }
         //Propiedades de solo lectura - No Mapean en DB
+        [Display(Name ="Full Name")]
         public string FullName => $"{FirstName} {LastName}";
         public string FullNameWithDocument => $"{FirstName} {LastName} - {Document}";
 
