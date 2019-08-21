@@ -19,7 +19,7 @@ namespace MyLeasing.Web.Controllers
         // GET: Owners
         public async Task<IActionResult> Index()
         {
-            return View(await _context.owners.ToListAsync());
+            return View(await _context.Owners.ToListAsync());
         }
 
         // GET: Owners/Details/5
@@ -30,7 +30,7 @@ namespace MyLeasing.Web.Controllers
                 return NotFound();
             }
 
-            var owner = await _context.owners
+            var owner = await _context.Owners
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (owner == null)
             {
@@ -70,7 +70,7 @@ namespace MyLeasing.Web.Controllers
                 return NotFound();
             }
 
-            var owner = await _context.owners.FindAsync(id);
+            var owner = await _context.Owners.FindAsync(id);
             if (owner == null)
             {
                 return NotFound();
@@ -121,7 +121,7 @@ namespace MyLeasing.Web.Controllers
                 return NotFound();
             }
 
-            var owner = await _context.owners
+            var owner = await _context.Owners
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (owner == null)
             {
@@ -136,15 +136,15 @@ namespace MyLeasing.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var owner = await _context.owners.FindAsync(id);
-            _context.owners.Remove(owner);
+            var owner = await _context.Owners.FindAsync(id);
+            _context.Owners.Remove(owner);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool OwnerExists(int id)
         {
-            return _context.owners.Any(e => e.Id == id);
+            return _context.Owners.Any(e => e.Id == id);
         }
     }
 }
